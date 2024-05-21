@@ -48,7 +48,7 @@ Generate service file using go-subst.
 
 ```shell
  $ export SERVICE_DESCRIPTION="This is example service." SERVICE_BIN_PATH="/usr/local/bin/example"
- $ cat example.service.template | go-subst
+ $ cat example.service.tmpl | go-subst
 [Unit]
 Description=This is example service.
 After=network.service
