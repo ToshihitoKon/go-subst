@@ -45,7 +45,7 @@ func (c *CLI) prepare() error {
 func (c *CLI) process() error {
 	result, err := goconfig.ReadWithEnvBytes(c.input)
 	if err != nil {
-		return fmt.Errorf("goconfig.ReadWithEnvBytes failed: %w", err)
+		return fmt.Errorf("goconfig.ReadWithEnvBytes: %w", err)
 	}
 
 	c.result = result
@@ -54,10 +54,10 @@ func (c *CLI) process() error {
 
 func (c *CLI) flush() error {
 	if _, err := c.output.Write(c.result); err != nil {
-		return fmt.Errorf("Write failed: %w", err)
+		return fmt.Errorf("output.Write: %w", err)
 	}
 	if err := c.output.Flush(); err != nil {
-		return fmt.Errorf("Flush failed: %w", err)
+		return fmt.Errorf("output.Flush: %w", err)
 	}
 	return nil
 }
@@ -82,7 +82,7 @@ func (c *CLI) scanStdin() error {
 	}
 
 	if err := scanner.Err(); err != nil {
-		return fmt.Errorf("scanner.Scan failed: %w", err)
+		return fmt.Errorf("scanner.Scan: %w", err)
 	}
 
 	return nil

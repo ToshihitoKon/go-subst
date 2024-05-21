@@ -10,7 +10,7 @@ import (
 func main() {
 	c := &gosubst.CLI{}
 	if err := c.Run(); err != nil {
-		fmt.Fprintf(os.Stderr, "command failed: %s", err)
+		fmt.Fprintf(os.Stderr, "error: %s", err)
 		os.Exit(1)
 	}
 }
