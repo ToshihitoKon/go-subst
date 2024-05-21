@@ -1,13 +1,16 @@
 package main
 
 import (
-	"context"
+	"fmt"
+	"os"
 
 	gosubst "github.com/ToshihitoKon/go-subst"
 )
 
 func main() {
-	ctx := context.Background()
 	c := &gosubst.CLI{}
-	c.Run(ctx)
+	if err := c.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "command failed: %s", err)
+		os.Exit(1)
+	}
 }

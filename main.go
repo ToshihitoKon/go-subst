@@ -2,7 +2,6 @@ package gosubst
 
 import (
 	"bufio"
-	"context"
 	"fmt"
 	"os"
 
@@ -10,23 +9,22 @@ import (
 )
 
 type CLI struct {
-	input   []byte
-	result  []byte
-	output  *bufio.Writer
-	context context.Context
+	input  []byte
+	result []byte
+	output *bufio.Writer
 }
 
-func (c *CLI) Run(ctx context.Context) error {
+func (c *CLI) Run() error {
 	if err := c.prepare(); err != nil {
-		return fmt.Errorf("prepare failed: %w", err)
+		return err
 	}
 
 	if err := c.process(); err != nil {
-		return fmt.Errorf("process failed: %w", err)
+		return err
 	}
 
 	if err := c.flush(); err != nil {
-		return fmt.Errorf("flush failed: %w", err)
+		return err
 	}
 
 	return nil
@@ -56,7 +54,7 @@ func (c *CLI) process() error {
 
 func (c *CLI) flush() error {
 	if _, err := c.output.Write(c.result); err != nil {
-		return fmt.Errorf("WriteString failed: %w", err)
+		return fmt.Errorf("Write failed: %w", err)
 	}
 	if err := c.output.Flush(); err != nil {
 		return fmt.Errorf("Flush failed: %w", err)
