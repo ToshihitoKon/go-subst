@@ -5,6 +5,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+
+	goconfig "github.com/kayac/go-config"
 )
 
 type CLI struct {
@@ -42,9 +44,11 @@ func (c *CLI) prepare() error {
 }
 
 func (c *CLI) process() error {
-	// TODO: impl template process
-	result := c.input
-	c.result = result
+	result, err := goconfig.ReadWithEnvBytes([]byte(c.input))
+	if err != nil {
+		return fmt.Errorf("goconfig.ReadWithEnvBytes failed: %w", err)
+	}
+	c.result = string(result)
 	return nil
 }
 
@@ -55,7 +59,6 @@ func (c *CLI) flush() error {
 	if err := c.output.Flush(); err != nil {
 		return fmt.Errorf("Flush failed: %w", err)
 	}
-
 	return nil
 }
 
