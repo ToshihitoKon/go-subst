@@ -36,7 +36,7 @@ After=network.service
 
 [Service]
 Type=simple
-ExecStart={{ must_env `SERVICE_BIN_PATH`}}
+ExecStart={{ must_env `SERVICE_BIN_PATH` }}
 ExecStop=/bin/kill -WINCH ${MAINPID}
 Restart=always
 
