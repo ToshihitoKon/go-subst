@@ -1,6 +1,6 @@
 # go-subst
 
-go-subst is a CLI tool that embeds environment variables into text files, similar to envsubst, but with enhanced safety
+`go-subst` is a CLI tool that embeds environment variables into text files, used for similar purposes as `envsubst`, but with enhanced safety.
 
 ## Features
 
