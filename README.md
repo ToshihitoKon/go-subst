@@ -25,7 +25,7 @@ cat template | go-subst > output-file
 
 ## Lisence
 
-This project is licensed under the MIT License, see the LICENSE.txt and CREDIT files for details.
+This project is licensed under the MIT License, see the LICENSE and CREDITS files for details.
 
 ## Motivation
 
